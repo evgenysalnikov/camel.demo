@@ -17,13 +17,13 @@ fun main(args: Array<String>) {
 
 class FileMove() : RouteBuilder() {
     override fun configure() {
-        from("file:/input?noop=true")
+        from("file:src/data?noop=true")
             .choice()
             .`when`(xpath("/person/city = 'London'"))
             .log("UK message")
-            .to("file:/target/messages/uk")
+            .to("file:target/messages/uk")
             .otherwise()
             .log("Other message")
-            .to("file:/target/messages/others")
+            .to("file:target/messages/others")
     }
 }
